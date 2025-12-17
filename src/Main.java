@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -10,7 +13,29 @@ public class Main {
         Bird bObj =val -> System.out.println("Eagle bird impl from lambdas");
         bObj.canFly("verical");
 
+        Consumer<Integer> log = val -> {
+            if(val > 10) {
+                System.out.println("Logging");
+            }
+        };
+        log.accept(11);
+//---------------------------------------------------
 
+        Supplier<String> sup = () -> "result";
+        System.out.println(sup.get());
+//---------------------------------------------------
+
+        Function<Integer, String> func = i -> {
+            String output = i.toString();
+            return "Number to string: " + output;
+        };
+        System.out.println(func.apply(24));
+//---------------------------------------------------
+
+        Predicate<Integer> pred = i -> i % 2 == 0;
+        System.out.println(pred.test(3));
+
+//---------------------------------------------------
         List<Integer> nums = List.of(3, 6, 1, 8, 5, 7, 2, 4);
 
         Function<Integer, Integer> fun =n -> n *2;
